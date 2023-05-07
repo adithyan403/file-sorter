@@ -10,7 +10,7 @@ public class main extends JFrame{
 		JLabel label=new JLabel("            Welcome \n Enter the file location with complete path");
 
 		add(label,BorderLayout.NORTH);
-		JButton button=new JButton("Click TO Arr");
+		JButton button=new JButton("Click TO Arrange");
 		add(button,BorderLayout.SOUTH);
         JTextField text=new JTextField(5);
 		add(text);
