@@ -23,6 +23,12 @@ public class main extends JFrame{
 		text.setPreferredSize(new Dimension(200, 30));
 		text.setBackground(Color.blue);
 		setVisible(true);
+		Comparator<File> comparator = new Comparator<File>() {
+            public int compare(File file1, File file2) {
+                return Long.compare(file1.length(), file2.length());
+            }
+        };
+		
 		
         // Define a comparator to compare files based on their size
         
@@ -37,23 +43,20 @@ public class main extends JFrame{
         
         // Convert the array of files to a List
         	List<File> fileList = Arrays.asList(files);
+			Collections.sort(fileList, comparator);
+        
+        // Iterate over the sorted list and perform the desired action
+        	for (File file : fileList) {
+            // Move the file to a new directory
+            	file.renameTo(new File(text.getText() + file.getName()));
+        }
+
         
     
             	
 		});
-		Comparator<File> comparator = new Comparator<File>() {
-            public int compare(File file1, File file2) {
-                return Long.compare(file1.length(), file2.length());
-            }
-        };
-		Collections.sort(fileList, comparator);
-        
-        // Iterate over the sorted list and perform the desired action
-        for (File file : fileList) {
-            // Move the file to a new directory
-            file.renameTo(new File("C:/example/newdirectory/" + file.getName()));
-        }
-
+		
+		
 	}
 	public static void main(String[] args) {
 		new main();
